@@ -5,30 +5,28 @@ import {
   getTokenData,
   isAuthenticated,
   removeAuthData,
-  TokenData,
 } from 'util/requests';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import history from 'util/history';
+import { AuthContext } from 'AuthContext';
 
-type AuthData = {
-  authenticated: boolean;
-  tokenData?: TokenData;
-};
+
 function Navbar() {
-  const [authData, setAuthData] = useState<AuthData>({ authenticated: false });
+
+  const { authContextData, setAuthContextData } = useContext(AuthContext);
 
   useEffect(() => {
     if (isAuthenticated()) {
-      setAuthData({ authenticated: true, tokenData: getTokenData() });
+      setAuthContextData({ authenticated: true, tokenData: getTokenData() });
     } else {
-      setAuthData({ authenticated: false });
+      setAuthContextData({ authenticated: false });
     }
   }, []);
 
   const handleLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     removeAuthData();
-    setAuthData({
+    setAuthContextData({
       authenticated: false,
     });
     history.replace('/');
@@ -74,9 +72,9 @@ function Navbar() {
         </div>
 
         <div className='nav-login-logout'>
-          {authData.authenticated ? (
+          {authContextData.authenticated ? (
             <>
-              <span className='nav-user-name'>{authData.tokenData?.user_name}</span>
+              <span className='nav-user-name'>{authContextData.tokenData?.user_name}</span>
               <a href="#logout" onClick={handleLogoutClick}>
                 LOGOUT
               </a>
