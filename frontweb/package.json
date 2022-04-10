@@ -13,6 +13,7 @@
     "@types/qs": "^6.9.7",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
+    "@types/react-native": "0.63.40",
     "@types/react-router-dom": "5.1.7",
     "axios": "^0.26.1",
     "bootstrap": "^5.1.3",
