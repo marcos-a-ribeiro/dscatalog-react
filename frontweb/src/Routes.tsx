@@ -7,6 +7,7 @@ import ProductDetails from 'pages/ProductDetails';
 import Auth from 'pages/Admin/Auth';
 import history from 'util/history';
 
+
 const Routes = () => ( 
   <Router history={history}>
     <Navbar />
